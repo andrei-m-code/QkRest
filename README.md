@@ -120,4 +120,4 @@ Or for simple scenarios it can be implemented inline, see example:
 services.AddQkRest(options => options.AuthorizationHandler(context => 
             new GenericPrincipal(new GenericIdentity("John Doe"), new[] {"User"})));
 ```
-So all you need to do is assemble `ClaimsPrincipal` from request context or return `null`. If Web API action is secured and ClaimsPrincipal is null, QkUnauthorizedException will be thrown. That simple. 
+So all you need to do is assemble `ClaimsPrincipal` from request context or return `null`. All your API actions become secured, mark it as `[AllowAnonymous]` if you want to open action for everybody. If Web API action is secured and null ClaimsPrincipal returned from handler, QkUnauthorizedException will be thrown. That simple. 
