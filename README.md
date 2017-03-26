@@ -2,6 +2,11 @@
 Microframework for quick REST API development on ASP.NET Core. It provides exception handling, simple custom authorization features and basic REST API models. It works the best for new projects as you would get standardized API models right from the start, you would use QkRest exceptions in your code and you wouldn't have to redefine default exception handling logic.
 
 # Getting started
+You can download the project and reference it in your solution but the recommended way would be to use NuGet package:
+
+```
+Install-Package QkRest
+```
 
 In `Startup` class of your ASP.NET Core application we need to register and configure QkRest dependencies as well as QkRest middleware:
 
