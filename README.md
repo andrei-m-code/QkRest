@@ -79,7 +79,7 @@ Default exception handling middleware will take care of the rest and return the 
 }
 ```
 
-You can use `QkException` for validation purposes or use it as a base class: `EmailIsIncorrectException : QkException`. 
+You can use `QkException` for validation purposes or use it as a base class: `EmailIsIncorrectException : QkException`. For non-QkExceptions HTTP status code will be set to 500 internal server error.
 
 If you want to extend or override exception handling, you will need to extend default `QkExceptionHandler` or implement `IQkExceptionHandler` interface. Only one exception handler should be implemented and registered. Once you have it:
 
