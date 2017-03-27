@@ -50,7 +50,7 @@ Use `return new QkResponse();` for empty successful result. There is also `new Q
 
 # Exception handling
 
-Currently we have 3 types of exceptions QkRestNotFoundException (HTTP 404), QkRestUnauthorizedException (HTTP 401) and QkRestException (HTTP 400). All you have to do is just throw one of these exceptions:
+Currently we have 3 types of exceptions `QkNotFoundException` (HTTP 404), `QkUnauthorizedException` (HTTP 401) and `QkException` (HTTP 400). All you have to do is just throw one of these exceptions:
 
 ```
 [HttpGet, Route("users/{userId}")]
@@ -79,7 +79,7 @@ Default exception handling middleware will take care of the rest and return the 
 }
 ```
 
-You can use `QkException` for validation purposes or use it as a base class: `EmailIsIncorrectException : QkException`. For non-QkExceptions HTTP status code will be set to 500 internal server error.
+You can use `QkException` for validation purposes or use it as a base class e.g. ` class EmailIsIncorrectException : QkException { ... }`. For non-QkExceptions HTTP status code will be set to 500 internal server error.
 
 If you want to extend or override exception handling, you will need to extend default `QkExceptionHandler` or implement `IQkExceptionHandler` interface. Only one exception handler should be implemented and registered. Once you have it:
 
