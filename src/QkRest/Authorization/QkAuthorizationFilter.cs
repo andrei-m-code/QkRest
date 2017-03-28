@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc.Filters;
 using QkRest.Contracts;
 using QkRest.Exceptions;
 
@@ -15,8 +18,12 @@ namespace QkRest.Authorization
 
         public virtual void OnAuthorization(AuthorizationFilterContext context)
         {
-            var user = authorizationHandler.CreatePrincipal(context);
-            context.HttpContext.User = user ?? throw new QkUnauthorizedException("User is not authorized.");
+            context.HttpContext.User = authorizationHandler.CreatePrincipal(context);
+
+            if (context.HttpContext.User == null && !context.Filters.Any(filter => filter is AllowAnonymousFilter || filter is AllowAnonymousAttribute))
+            {
+                throw new QkUnauthorizedException("User is not authorized.");
+            }
         }
     }
 }
