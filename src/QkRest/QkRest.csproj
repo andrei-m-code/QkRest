@@ -3,16 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <PackageId>QkRest</PackageId>
-    <PackageVersion>1.0.2</PackageVersion>
+    <PackageVersion>1.0.3</PackageVersion>
     <Authors>Andrei M</Authors>
     <Title>QkRest - Quick REST API development</Title>
-    <Description>Microframework for quick REST API development on ASP.NET Core.</Description>
+    <Description>Micro-library for quick REST API development on ASP.NET Core.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright 2017</Copyright>
     <PackageTags>rest asp.net-core web-api authorization exception-handling</PackageTags>
     <ProjectUrl>https://github.com/nonsense66/QkRest</ProjectUrl>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
-    <FileVersion>1.0.2.0</FileVersion>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <FileVersion>1.0.3.0</FileVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
