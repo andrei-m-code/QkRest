@@ -13,7 +13,7 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\QkRest\QkRest.csproj" />
+    <ProjectReference Include="..\QkRest\QkRest.csproj" />
   </ItemGroup>
 
 </Project>
