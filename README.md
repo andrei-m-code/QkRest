@@ -42,6 +42,7 @@ The response will look like this:
 ```
 {
     data: [ "John Doe", "Lorem Ipsum" ],
+    success: true,
     error: null
 }
 ```
@@ -71,6 +72,7 @@ Default exception handling middleware will take care of the rest and return the 
 
 ```
 {
+    success: false,
     error: {
         type: "QkNotFoundException",
         message: "User is not found.",
