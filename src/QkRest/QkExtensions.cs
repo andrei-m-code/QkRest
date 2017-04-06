@@ -10,26 +10,44 @@ namespace QkRest
 {
     public static class QkExtensions
     {
+        private static bool qkRestAdded;
+        private static bool qkRestUsed;
+
         public static void AddQkRest(this IServiceCollection services, Action<QkOptions> configurationAction = null)
         {
-            var options = new QkOptions(services);
-
-            configurationAction?.Invoke(options);
-
-            if (!options.exceptionsConfigured)
+            if (!qkRestAdded)
             {
-                services.AddScoped<IQkExceptionHandler, QkExceptionHandler>();
+                var options = new QkOptions(services);
+
+                configurationAction?.Invoke(options);
+
+                if (!options.exceptionsConfigured)
+                {
+                    services.AddScoped<IQkExceptionHandler, QkExceptionHandler>();
+                }
+
+                if (options.authorizationConfigured)
+                {
+                    services.AddSingleton(typeof(IConfigureOptions<MvcOptions>), options);
+                }
+
+                qkRestAdded = true;
+                return;
             }
 
-            if (options.authorizationConfigured)
-            {
-                services.AddSingleton(typeof(IConfigureOptions<MvcOptions>), options);
-            }
+            throw new InvalidOperationException(nameof(AddQkRest) + " should be called only once!");
         }
 
         public static void UseQkRest(this IApplicationBuilder app)
         {
-            app.UseMiddleware(typeof(QkExceptionHandlingMiddleware));
+            if (!qkRestUsed)
+            {
+                app.UseMiddleware(typeof(QkExceptionHandlingMiddleware));
+                qkRestUsed = true;
+                return;
+            }
+
+            throw new InvalidOperationException(nameof(UseQkRest) + " should be called only once!");
         }
     }
 }

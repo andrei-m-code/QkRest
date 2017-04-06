@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9778C2C6-B0C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QkRest", "src\QkRest\QkRest.csproj", "{8A11EAB1-FD04-4EE7-A39E-F90FFBF6ED10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QkRest.Sample", "QkRest.Sample\QkRest.Sample.csproj", "{B51D0EB5-29A1-474A-B38D-02266086A682}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,11 +19,16 @@ Global
 		{8A11EAB1-FD04-4EE7-A39E-F90FFBF6ED10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A11EAB1-FD04-4EE7-A39E-F90FFBF6ED10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A11EAB1-FD04-4EE7-A39E-F90FFBF6ED10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B51D0EB5-29A1-474A-B38D-02266086A682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B51D0EB5-29A1-474A-B38D-02266086A682}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B51D0EB5-29A1-474A-B38D-02266086A682}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B51D0EB5-29A1-474A-B38D-02266086A682}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8A11EAB1-FD04-4EE7-A39E-F90FFBF6ED10} = {9778C2C6-B0C5-4B50-8D34-2116543E689B}
+		{B51D0EB5-29A1-474A-B38D-02266086A682} = {9778C2C6-B0C5-4B50-8D34-2116543E689B}
 	EndGlobalSection
 EndGlobal

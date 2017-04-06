@@ -47,7 +47,7 @@ namespace QkRest
         /// <summary>
         /// Was request successful.
         /// </summary>
-        public bool IsSuccessful { get; private set; } = true;
+        public bool Success { get; private set; } = true;
 
         /// <summary>
         /// Constructor. Default constructor for empty and successful API response.
@@ -63,7 +63,7 @@ namespace QkRest
         public QkResponse(Exception exception)
         {
             Error = new QkResponseError(exception);
-            IsSuccessful = false;
+            Success = false;
         }
     }
 
