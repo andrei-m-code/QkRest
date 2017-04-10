@@ -132,7 +132,7 @@ QkRest strives to simplify initial REST application setup and puts all the neces
 services.AddQkRest(options => options.ConfigureSwagger("Sample App"));
 ```
 
-The code above sets application name for Swagger. This method has a few optional parameters. Please check out method signature and overloads and find one that works the best for you. Important to mention, the overload below completely overrides QkRest initial Swashbuckle setup that many people would find useful:
+The code above sets application name for Swagger. This method has a few optional parameters. Please check out method signature and overloads and find one that works the best for you. ConfigureSwagger methods can be called multiple times. There is an overload that lets you access Swashbuckle options directly. Important to mention, the overload below completely overrides QkRest initial Swashbuckle setup (not really recommended):
 
 ```
 services.AddQkRest(options => options.OverrideQkSwagger(swashOptions => { ... }));

@@ -33,6 +33,7 @@ namespace QkRest.Sample
             //*** Swagger ***
             //Swagger is enabled out of the box.
             //There are a few ConfigureSwagger methods that you can use to customize swagger generation.
+            //ConfigureSwagger methods can be called multiple times.
             services.AddQkRest(options =>
             {
                 options.ConfigureSwagger("Sample App" /* ... */);
@@ -43,8 +44,11 @@ namespace QkRest.Sample
                 //    /* ... */
                 //});
                 
+                //Configure swagger using Swashbuckle options directly.
+                //options.ConfigureSwagger(swashOptions => { /* ... */ });
+
                 //This method completely overrides Qk swagger setup:
-                //options.ConfigureSwagger(swashOptions => { /* configure swagger using Swashbuckle options.*/ });
+                //options.OverrideQkSwagger(swashOptions => { /* configure swagger using Swashbuckle options.*/ });
 
                 //Shows "Authorization" token header field for non-[AllowAnonymous] APIs:
                 //options.EnableSwaggerAuthorizationTokenField();
