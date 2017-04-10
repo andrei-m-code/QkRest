@@ -15,17 +15,17 @@ namespace QkRest
             /// <summary>
             /// Exception type name.
             /// </summary>
-            public string Type { get; private set; }
+            public string Type { get; }
 
             /// <summary>
             /// Exception message.
             /// </summary>
-            public string Message { get; private set; }
+            public string Message { get; }
 
             /// <summary>
             /// Exception stack trace.
             /// </summary>
-            public string Trace { get; private set; }
+            public string Trace { get; }
 
             /// <summary>
             /// Constructor.
@@ -40,17 +40,17 @@ namespace QkRest
         }
 
         /// <summary>
-        /// API populates this property in case when exception occurs during request processing.
+        /// API error details.
         /// </summary>
-        public QkResponseError Error { get; private set; }
+        public QkResponseError Error { get; }
 
         /// <summary>
-        /// Was request successful.
+        /// Indicates if request excecution was successful or not.
         /// </summary>
-        public bool Success { get; private set; } = true;
+        public bool Success { get; } = true;
 
         /// <summary>
-        /// Constructor. Default constructor for empty and successful API response.
+        /// Default constructor for empty and successful API response.
         /// </summary>
         public QkResponse()
         {
@@ -76,7 +76,7 @@ namespace QkRest
         /// <summary>
         /// Response data.
         /// </summary>
-        public TData Data { get; private set; }
+        public TData Data { get; }
 
         /// <summary>
         /// Constructor. Accepts response data model.

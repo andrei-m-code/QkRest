@@ -123,3 +123,38 @@ services.AddQkRest(options => options.AuthorizationHandler(context =>
             new GenericPrincipal(new GenericIdentity("John Doe"), new[] {"User"})));
 ```
 So all you need to do is assemble `ClaimsPrincipal` from request context or return `null`. All your API actions become secured, mark it as `[AllowAnonymous]` if you want to open action for everybody. If Web API action is secured and null ClaimsPrincipal returned from handler, QkUnauthorizedException will be thrown. That simple. 
+
+# Swagger
+
+QkRest strives to simplify initial REST application setup and puts all the necessary things under it's hood. We added Swashbuckle package to enable Swagger support out-of-the-box. There are a few important customizations that you might want to have in your project:
+
+```
+services.AddQkRest(options => options.ConfigureSwagger("Sample App"));
+```
+
+The code above sets application name for Swagger. This method has a few optional parameters. Please check out method signature and overloads and find one that works the best for you. Important to mention, the overload below completely overrides QkRest initial Swashbuckle setup that many people would find useful:
+
+```
+services.AddQkRest(options => options.ConfigureSwagger(swashOptions => { ... }));
+```
+By default QkRest includes all project xml documentations it could find to provide swagger comments to API methods, fields, errors etc. By the way, to enable xml documentation generation you should go to Project Properties -> Build -> Xml documentation file checkbox set checked. Path like that usually works "bin\Debug\netcoreapp1.1\[PROJECT_NAME].xml" fine. Please note, xml generation for Debug and Release is enabled separately.
+
+One of the desired swagger customizations is to add Authorization header field for APIs that require token to be passed in header for methods/controllers not marked as [AllowAnonymous]. Especially for this specific but very common use-case we have extension method:
+
+```
+services.AddQkRest(options => options.EnableSwaggerAuthorizationTokenField());
+```
+
+If you wish to disable QkRest swagger (maybe you want to configure Swashbuckle directly or don't want swagger at all):
+
+```
+services.AddQkRest(options => options.DisableSwagger());
+```
+
+And finally, if you don't want swagger UI or you need to change swagger JSON or swagger UI URLs, you can suppress Swashbuckle registration in UseQkRest and call it's methods directly:
+
+```
+app.UseQkRest(suppressUseSwagger: true);
+app.UseSwagger(...);
+app.UseSwaggerUi(...);
+```

@@ -8,11 +8,17 @@ using QkRest.Middleware;
 
 namespace QkRest
 {
+    /// <summary>
+    /// Extensions to enable QkRest.
+    /// </summary>
     public static class QkExtensions
     {
         private static bool qkRestAdded;
         private static bool qkRestUsed;
 
+        /// <summary>
+        /// Configures and registers QkRest dependencies.
+        /// </summary>
         public static void AddQkRest(this IServiceCollection services, Action<QkOptions> configurationAction = null)
         {
             if (!qkRestAdded)
@@ -28,7 +34,12 @@ namespace QkRest
 
                 if (options.authorizationConfigured)
                 {
-                    services.AddSingleton(typeof(IConfigureOptions<MvcOptions>), options);
+                    services.AddSingleton(typeof(IConfigureOptions<MvcOptions>), new QkMvcConfigureOptions(options));
+                }
+
+                if (!options.disableSwagger)
+                {
+                    services.AddSwaggerGen(options.swaggerSetup);
                 }
 
                 qkRestAdded = true;
@@ -38,11 +49,21 @@ namespace QkRest
             throw new InvalidOperationException(nameof(AddQkRest) + " should be called only once!");
         }
 
-        public static void UseQkRest(this IApplicationBuilder app)
+        /// <summary>
+        /// Registers QkRest middlewares.
+        /// </summary>
+        public static void UseQkRest(this IApplicationBuilder app, bool suppressUseSwagger = false)
         {
             if (!qkRestUsed)
             {
                 app.UseMiddleware(typeof(QkExceptionHandlingMiddleware));
+
+                if (!suppressUseSwagger)
+                {
+                    app.UseSwagger();
+                    app.UseSwaggerUi();
+                }
+
                 qkRestUsed = true;
                 return;
             }

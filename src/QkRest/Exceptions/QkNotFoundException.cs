@@ -6,14 +6,14 @@ namespace QkRest.Exceptions
     public class QkNotFoundException : QkException
     {
         /// <summary>
-        /// Constructor.
+        /// Default constructor.
         /// </summary>
         public QkNotFoundException()
         {
         }
 
         /// <summary>
-        /// Constructor.
+        /// Constructor that takes error message.
         /// </summary>
         public QkNotFoundException(string errorMessage) : base(errorMessage)
         {
