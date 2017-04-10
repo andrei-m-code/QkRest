@@ -3,19 +3,19 @@ using System;
 namespace QkRest.Exceptions
 {
     /// <summary>
-    /// Base tracker exception.
+    /// Base Qk exception.
     /// </summary>
     public class QkException : Exception
     {
         /// <summary>
-        /// Constructor.
+        /// Default constructor.
         /// </summary>
         public QkException()
         {
         }
 
         /// <summary>
-        /// Constructor.
+        /// Constructor that takes error message.
         /// </summary>
         public QkException(string errorMessage) : base(errorMessage)
         {

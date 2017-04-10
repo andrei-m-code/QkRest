@@ -6,14 +6,14 @@ namespace QkRest.Exceptions
     public class QkUnauthorizedException : QkException
     {
         /// <summary>
-        /// Constructor.
+        /// Default constructor.
         /// </summary>
         public QkUnauthorizedException()
         {
         }
 
         /// <summary>
-        /// Constructor.
+        /// Constructor that takes error message.
         /// </summary>
         public QkUnauthorizedException(string errorMessage) : base(errorMessage)
         {
