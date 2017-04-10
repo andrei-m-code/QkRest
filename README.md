@@ -135,7 +135,7 @@ services.AddQkRest(options => options.ConfigureSwagger("Sample App"));
 The code above sets application name for Swagger. This method has a few optional parameters. Please check out method signature and overloads and find one that works the best for you. Important to mention, the overload below completely overrides QkRest initial Swashbuckle setup that many people would find useful:
 
 ```
-services.AddQkRest(options => options.ConfigureSwagger(swashOptions => { ... }));
+services.AddQkRest(options => options.OverrideQkSwagger(swashOptions => { ... }));
 ```
 By default QkRest includes all project xml documentations it could find to provide swagger comments to API methods, fields, errors etc. By the way, to enable xml documentation generation you should go to Project Properties -> Build -> Xml documentation file checkbox set checked. Path like that usually works "bin\Debug\netcoreapp1.1\[PROJECT_NAME].xml" fine. Please note, xml generation for Debug and Release is enabled separately.
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
@@ -25,7 +26,7 @@ namespace QkRest
 
         internal bool disableSwagger;
         internal bool swaggerConfigured;
-        internal Action<SwaggerGenOptions> swaggerSetup;
+        internal List<Action<SwaggerGenOptions>> swaggerSetup = new List<Action<SwaggerGenOptions>>();
         private Info swaggerInfo = new Info
         {
             Version = "v1",
@@ -35,7 +36,7 @@ namespace QkRest
         internal QkOptions(IServiceCollection services)
         {
             this.services = services;
-            swaggerSetup = DefaultSwaggerConfiguration;
+            swaggerSetup.Add(DefaultSwaggerConfiguration);
         }
 
         /// <summary>
@@ -70,7 +71,6 @@ namespace QkRest
         /// </summary>
         public void DisableSwagger()
         {
-            CheckSwaggerConfigured();
             disableSwagger = true;
             swaggerConfigured = true;
         }
@@ -78,10 +78,19 @@ namespace QkRest
         /// <summary>
         /// Configures swagger using native Swashbuckle options method. It completely overrides QkRest swagger setup.
         /// </summary>
+        public void OverrideQkSwagger(Action<SwaggerGenOptions> setup)
+        {
+            swaggerSetup.Clear();
+            swaggerSetup.Add(setup);
+            swaggerConfigured = true;
+        }
+
+        /// <summary>
+        /// Configure swagger. Customization happens after initial Qk swagger configuration.
+        /// </summary>
         public void ConfigureSwagger(Action<SwaggerGenOptions> setup)
         {
-            CheckSwaggerConfigured();
-            swaggerSetup = setup;
+            swaggerSetup.Add(setup);
             swaggerConfigured = true;
         }
 
@@ -91,7 +100,7 @@ namespace QkRest
         /// <param name="info"></param>
         public void ConfigureSwagger(Info info)
         {
-            CheckSwaggerConfigured();
+            swaggerSetup.Add(options => options.SingleApiVersion(info));
             swaggerInfo = info;
             swaggerConfigured = true;
         }
@@ -101,12 +110,12 @@ namespace QkRest
         /// </summary>
         public void ConfigureSwagger(string title, string description = "", string terms = "", Contact contact = null, License license = null)
         {
-            CheckSwaggerConfigured();
             swaggerInfo.Title = title;
             swaggerInfo.Description = description;
             swaggerInfo.Contact = contact;
             swaggerInfo.License = license;
             swaggerInfo.TermsOfService = terms;
+            swaggerSetup.Add(options => options.SingleApiVersion(swaggerInfo));
             swaggerConfigured = true;
         }
 
@@ -121,14 +130,6 @@ namespace QkRest
             }
 
             services.ConfigureSwaggerGen(options => options.OperationFilter<QkAuthorizationOperationFilter>());
-        }
-
-        private void CheckSwaggerConfigured()
-        {
-            if (swaggerConfigured)
-            {
-                throw new InvalidOperationException("Swagger has been configured already.");
-            }
         }
 
         private void DefaultSwaggerConfiguration(SwaggerGenOptions opts)

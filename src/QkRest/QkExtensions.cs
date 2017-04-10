@@ -39,7 +39,8 @@ namespace QkRest
 
                 if (!options.disableSwagger)
                 {
-                    services.AddSwaggerGen(options.swaggerSetup);
+                    services.AddSwaggerGen();
+                    options.swaggerSetup.ForEach(services.ConfigureSwaggerGen);
                 }
 
                 qkRestAdded = true;
