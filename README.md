@@ -132,12 +132,12 @@ QkRest strives to simplify initial REST application setup and puts all the neces
 services.AddQkRest(options => options.ConfigureSwagger("Sample App"));
 ```
 
-The code above sets application name for Swagger. This method has a few optional parameters. Please check out method signature and overloads and find one that works the best for you. ConfigureSwagger methods can be called multiple times. There is an overload that lets you access Swashbuckle options directly. Important to mention, the overload below completely overrides QkRest initial Swashbuckle setup (not really recommended):
+The code above sets application name for Swagger. This method has a few optional parameters. Please check out method signature and overloads and find the one, that works the best for you. ConfigureSwagger methods can be called multiple times. There is an overload that lets you access Swashbuckle options directly. Important to mention, the overload below completely overrides QkRest initial Swashbuckle setup (not really recommended):
 
 ```
 services.AddQkRest(options => options.OverrideQkSwagger(swashOptions => { ... }));
 ```
-By default QkRest includes all project xml documentations it could find to provide swagger comments to API methods, fields, errors etc. By the way, to enable xml documentation generation you should go to Project Properties -> Build -> Xml documentation file checkbox set checked. Path like that usually works "bin\\Debug\\netcoreapp1.1\\[PROJECT_NAME].xml" fine. Please note, xml generation for Debug and Release is enabled separately.
+By default QkRest includes all project xml documentations it could find to provide swagger comments to API methods, fields, errors etc. By the way, to enable xml documentation generation for your projects you should go to Project Properties -> Build -> Xml documentation file checkbox set checked. Path like that usually works "bin\\Debug\\netcoreapp1.1\\[PROJECT_NAME].xml" fine. Please note, xml generation for Debug and Release is enabled separately.
 
 One of the desired swagger customizations is to add Authorization header field for APIs that require token to be passed in header for methods/controllers not marked as [AllowAnonymous]. Especially for this specific but very common use-case we have extension method:
 
