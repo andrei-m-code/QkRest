@@ -9,7 +9,7 @@
     <Description>Micro-library for quick REST API development on ASP.NET Core.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright 2017</Copyright>
-    <PackageTags>rest asp.net-core web-api authorization exception-handling</PackageTags>
+    <PackageTags>rest asp.net-core web-api authorization exception-handling swagger swagger-ui swashbuckle</PackageTags>
     <ProjectUrl>https://github.com/nonsense66/QkRest</ProjectUrl>
     <AssemblyVersion>1.1.1.0</AssemblyVersion>
     <FileVersion>1.1.1.0</FileVersion>
