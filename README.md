@@ -1,5 +1,5 @@
 # QkRest Overview / When to use
-Microframework for quick REST API development on ASP.NET Core. It provides exception handling, simple custom authorization features, basic REST API models and Swagger support. It works the best for new projects as you would get standardized API models right from the start, you would use QkRest exceptions in your code and you wouldn't have to redefine default exception handling logic.
+Micro-library for quick REST API development on ASP.NET Core. It provides exception handling, simple custom authorization features, basic REST API models and Swagger support. It works the best for new projects as you would get standardized API models right from the start, you would use QkRest exceptions in your code and you wouldn't have to redefine default exception handling logic.
 
 # Getting started
 You can download the project and reference it in your solution but the recommended way would be to use NuGet package:
