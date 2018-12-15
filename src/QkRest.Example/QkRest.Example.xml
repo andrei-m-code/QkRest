@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QkRest.Example</name>
+    </assembly>
+    <members>
+        <member name="T:QkRest.Example.Controllers.ValuesController">
+            <summary>
+            Values APIs
+            </summary>
+        </member>
+        <member name="M:QkRest.Example.Controllers.ValuesController.Get">
+            <summary>
+            Get all values
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QkRest.Example.Controllers.ValuesController.Get(System.Int32)">
+            <summary>
+            Get value by id
+            </summary>
+            <param name="id">Value by id</param>
+            <returns>List of values</returns>
+        </member>
+    </members>
+</doc>

@@ -1,9 +1,9 @@
+using Microsoft.AspNetCore.Http;
+using QkRest.Contracts;
+using QkRest.Helpers;
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using QkRest.Helpers;
-using QkRest.Contracts;
 
 namespace QkRest.Middleware
 {
@@ -13,22 +13,24 @@ namespace QkRest.Middleware
     public class QkExceptionHandlingMiddleware
     {
         private readonly RequestDelegate next;
-        private readonly IQkExceptionHandler exceptionHandler;
+        private IQkExceptionHandler exceptionHandler;
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public QkExceptionHandlingMiddleware(RequestDelegate next, IQkExceptionHandler exceptionHandler)
+        public QkExceptionHandlingMiddleware(RequestDelegate next)
         {
             this.next = next;
-            this.exceptionHandler = exceptionHandler;
+            //this.exceptionHandler = exceptionHandler;
         }
 
         /// <summary>
         /// Execute middleware.
         /// </summary>
-        public async Task Invoke(HttpContext context)
+        public async Task Invoke(HttpContext context, IQkExceptionHandler exceptionHandler)
         {
+            this.exceptionHandler = exceptionHandler;
+
             try
             {
                 await next(context);

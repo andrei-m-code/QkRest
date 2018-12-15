@@ -1,18 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9778C2C6-B0C5-4B50-8D34-2116543E689B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QkRest", "src\QkRest\QkRest.csproj", "{5BF61122-7A4B-4A11-80BA-F19D3CE4564C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QkRest", "src\QkRest\QkRest.csproj", "{8A11EAB1-FD04-4EE7-A39E-F90FFBF6ED10}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QkRest.Sample", "src\QkRest.Sample\QkRest.Sample.csproj", "{B9EA44CA-447F-4A10-A252-C46B3ED54E68}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{99F152D0-15E1-4AB3-BC59-00546E5EECD2}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QkRest.Example", "src\QkRest.Example\QkRest.Example.csproj", "{8E08D991-BCE2-4DFD-8418-8F5495BED381}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,20 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8A11EAB1-FD04-4EE7-A39E-F90FFBF6ED10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A11EAB1-FD04-4EE7-A39E-F90FFBF6ED10}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A11EAB1-FD04-4EE7-A39E-F90FFBF6ED10}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A11EAB1-FD04-4EE7-A39E-F90FFBF6ED10}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B9EA44CA-447F-4A10-A252-C46B3ED54E68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9EA44CA-447F-4A10-A252-C46B3ED54E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B9EA44CA-447F-4A10-A252-C46B3ED54E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B9EA44CA-447F-4A10-A252-C46B3ED54E68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BF61122-7A4B-4A11-80BA-F19D3CE4564C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BF61122-7A4B-4A11-80BA-F19D3CE4564C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BF61122-7A4B-4A11-80BA-F19D3CE4564C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BF61122-7A4B-4A11-80BA-F19D3CE4564C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E08D991-BCE2-4DFD-8418-8F5495BED381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E08D991-BCE2-4DFD-8418-8F5495BED381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E08D991-BCE2-4DFD-8418-8F5495BED381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E08D991-BCE2-4DFD-8418-8F5495BED381}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{8A11EAB1-FD04-4EE7-A39E-F90FFBF6ED10} = {9778C2C6-B0C5-4B50-8D34-2116543E689B}
-		{B9EA44CA-447F-4A10-A252-C46B3ED54E68} = {9778C2C6-B0C5-4B50-8D34-2116543E689B}
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {68DBA38A-E2C9-49FD-A773-75D6EE69A013}
 	EndGlobalSection
 EndGlobal

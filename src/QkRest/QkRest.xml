@@ -1,0 +1,297 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QkRest</name>
+    </assembly>
+    <members>
+        <member name="T:QkRest.Authorization.QkAuthorizationFilter">
+            <summary>
+            Qk MVC Authorization filter.
+            </summary>
+        </member>
+        <member name="M:QkRest.Authorization.QkAuthorizationFilter.#ctor(QkRest.Contracts.IQkAuthorizationHandler)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="authorizationHandler">Authorization handler with logic for authorizing requests/users.</param>
+        </member>
+        <member name="M:QkRest.Authorization.QkAuthorizationFilter.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
+            <summary>
+            Called when authorization is required for MVC action.
+            </summary>
+        </member>
+        <member name="T:QkRest.Authorization.QkAuthorizationFilterFactory">
+            <summary>
+            Factory for creating Qk authorization filter and injecting necessary dependencies.
+            </summary>
+        </member>
+        <member name="P:QkRest.Authorization.QkAuthorizationFilterFactory.IsReusable">
+            <summary>
+            Is reusable.
+            </summary>
+        </member>
+        <member name="M:QkRest.Authorization.QkAuthorizationFilterFactory.CreateInstance(System.IServiceProvider)">
+            <summary>
+            Creates Qk authorization filter and injects necessary dependencies.
+            </summary>
+        </member>
+        <member name="T:QkRest.Contracts.IQkAuthorizationHandler">
+            <summary>
+            Authorization handler is needed to create ClaimsPrincipal 
+            from request context or return null if can't authorize request.
+            </summary>
+        </member>
+        <member name="M:QkRest.Contracts.IQkAuthorizationHandler.CreatePrincipal(Microsoft.AspNetCore.Mvc.Filters.FilterContext)">
+            <summary>
+            Authorizes the request and creates ClaimsPrincipal if possible or returns null.
+            </summary>
+        </member>
+        <member name="T:QkRest.Contracts.IQkExceptionHandler">
+            <summary>
+            Exception handler is used to set HTTP status code and return error JSON result to the client.
+            </summary>
+        </member>
+        <member name="M:QkRest.Contracts.IQkExceptionHandler.HandleException(System.Exception,System.Net.HttpStatusCode@)">
+            <summary>
+            Sets HTTP status code and creates JSON results for the client.
+            </summary>
+            <param name="exception">Exception to handle.</param>
+            <param name="code">HTTP status code to be set.</param>
+            <returns>JSON result for the client.</returns>
+        </member>
+        <member name="T:QkRest.Exceptions.QkException">
+            <summary>
+            Base Qk exception.
+            </summary>
+        </member>
+        <member name="M:QkRest.Exceptions.QkException.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:QkRest.Exceptions.QkException.#ctor(System.String)">
+            <summary>
+            Constructor that takes error message.
+            </summary>
+        </member>
+        <member name="T:QkRest.Exceptions.QkNotFoundException">
+            <summary>
+            Not found exception.
+            </summary>
+        </member>
+        <member name="M:QkRest.Exceptions.QkNotFoundException.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:QkRest.Exceptions.QkNotFoundException.#ctor(System.String)">
+            <summary>
+            Constructor that takes error message.
+            </summary>
+        </member>
+        <member name="T:QkRest.Exceptions.QkUnauthorizedException">
+            <summary>
+            Unauthorized exception.
+            </summary>
+        </member>
+        <member name="M:QkRest.Exceptions.QkUnauthorizedException.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:QkRest.Exceptions.QkUnauthorizedException.#ctor(System.String)">
+            <summary>
+            Constructor that takes error message.
+            </summary>
+        </member>
+        <member name="T:QkRest.Helpers.JsonHelper">
+            <summary>
+            JSON helper methods.
+            </summary>
+        </member>
+        <member name="M:QkRest.Helpers.JsonHelper.SerializeObject``1(``0)">
+            <summary>
+            Serialize object to JSON.
+            </summary>
+        </member>
+        <member name="M:QkRest.Helpers.JsonHelper.DeserializeObject``1(System.String)">
+            <summary>
+            Deserialize JSON string to object.
+            </summary>
+        </member>
+        <member name="T:QkRest.Middleware.QkExceptionHandlingMiddleware">
+            <summary>
+            Middleware that catches and processes exceptions that occur during HTTP request processing.
+            </summary>
+        </member>
+        <member name="M:QkRest.Middleware.QkExceptionHandlingMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:QkRest.Middleware.QkExceptionHandlingMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext,QkRest.Contracts.IQkExceptionHandler)">
+            <summary>
+            Execute middleware.
+            </summary>
+        </member>
+        <member name="M:QkRest.Middleware.QkExceptionHandlingMiddleware.HandleExceptionAsync(Microsoft.AspNetCore.Http.HttpContext,System.Exception)">
+            <summary>
+            Handle exceptions that occur during ASP.NET Core request processing.
+            </summary>
+        </member>
+        <member name="T:QkRest.QkExceptionHandler">
+            <summary>
+            Exception handler is used to set HTTP status code and return error JSON result to the client.
+            </summary>
+        </member>
+        <member name="M:QkRest.QkExceptionHandler.HandleException(System.Exception,System.Net.HttpStatusCode@)">
+            <summary>
+            Sets HTTP status code and creates JSON results for the client.
+            </summary>
+            <param name="exception">Exception to handle.</param>
+            <param name="code">HTTP status code to be set.</param>
+            <returns>JSON result for the client.</returns>
+        </member>
+        <member name="T:QkRest.QkExtensions">
+            <summary>
+            Extensions to enable QkRest.
+            </summary>
+        </member>
+        <member name="M:QkRest.QkExtensions.AddQkRest(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{QkRest.QkOptions})">
+            <summary>
+            Configures and registers QkRest dependencies.
+            </summary>
+        </member>
+        <member name="M:QkRest.QkExtensions.UseQkRest(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Boolean)">
+            <summary>
+            Registers QkRest middlewares.
+            </summary>
+        </member>
+        <member name="T:QkRest.QkOptions">
+            <summary>
+            QkRest configuration options container.
+            </summary>
+        </member>
+        <member name="M:QkRest.QkOptions.ExceptionHandler``1">
+            <summary>
+            Registers exception handler.
+            </summary>
+        </member>
+        <member name="M:QkRest.QkOptions.AuthorizationHandler``1">
+            <summary>
+            Registers authorization handler.
+            </summary>
+        </member>
+        <member name="M:QkRest.QkOptions.AuthorizationHandler(System.Func{Microsoft.AspNetCore.Mvc.Filters.FilterContext,System.Security.Claims.ClaimsPrincipal})">
+            <summary>
+            Registers simple Func authorization handler.
+            </summary>
+        </member>
+        <member name="M:QkRest.QkOptions.DisableSwagger">
+            <summary>
+            Disables Qk Swagger all-together.
+            </summary>
+        </member>
+        <member name="M:QkRest.QkOptions.OverrideQkSwagger(System.Action{Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions})">
+            <summary>
+            Configures swagger using native Swashbuckle options method. It completely overrides QkRest swagger setup.
+            </summary>
+        </member>
+        <member name="M:QkRest.QkOptions.ConfigureSwagger(System.Action{Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions})">
+            <summary>
+            Configure swagger. Customization happens after initial Qk swagger configuration.
+            </summary>
+        </member>
+        <member name="M:QkRest.QkOptions.ConfigureSwagger(Swashbuckle.AspNetCore.Swagger.Info)">
+            <summary>
+            Sets basic API info.
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:QkRest.QkOptions.ConfigureSwagger(System.String,System.String,System.String,Swashbuckle.AspNetCore.Swagger.Contact,Swashbuckle.AspNetCore.Swagger.License)">
+            <summary>
+            Sets basic API info.
+            </summary>
+        </member>
+        <member name="M:QkRest.QkOptions.EnableSwaggerAuthorizationTokenField">
+            <summary>
+            Shows "Authorization" token header field for non-[AllowAnonymous] APIs.
+            </summary>
+        </member>
+        <member name="T:QkRest.QkResponse">
+            <summary>
+            API response without response data.
+            </summary>
+        </member>
+        <member name="T:QkRest.QkResponse.QkResponseError">
+            <summary>
+            API response error model.
+            </summary>
+        </member>
+        <member name="P:QkRest.QkResponse.QkResponseError.Type">
+            <summary>
+            Exception type name.
+            </summary>
+        </member>
+        <member name="P:QkRest.QkResponse.QkResponseError.Message">
+            <summary>
+            Exception message.
+            </summary>
+        </member>
+        <member name="P:QkRest.QkResponse.QkResponseError.Trace">
+            <summary>
+            Exception stack trace.
+            </summary>
+        </member>
+        <member name="M:QkRest.QkResponse.QkResponseError.#ctor(System.Exception)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="exception">Exception that occured during request processing.</param>
+        </member>
+        <member name="P:QkRest.QkResponse.Error">
+            <summary>
+            API error details.
+            </summary>
+        </member>
+        <member name="P:QkRest.QkResponse.Success">
+            <summary>
+            Indicates if request excecution was successful or not.
+            </summary>
+        </member>
+        <member name="M:QkRest.QkResponse.#ctor">
+            <summary>
+            Default constructor for empty and successful API response.
+            </summary>
+        </member>
+        <member name="M:QkRest.QkResponse.#ctor(System.Exception)">
+            <summary>
+            Constructor for error API response.
+            </summary>
+            <param name="exception">Exception that occured during request processing.</param>
+        </member>
+        <member name="T:QkRest.QkResponse`1">
+            <summary>
+            API response with response data.
+            </summary>
+            <typeparam name="TData">Response data type.</typeparam>
+        </member>
+        <member name="P:QkRest.QkResponse`1.Data">
+            <summary>
+            Response data.
+            </summary>
+        </member>
+        <member name="M:QkRest.QkResponse`1.#ctor(`0)">
+            <summary>
+            Constructor. Accepts response data model.
+            </summary>
+            <param name="data">Response data.</param>
+        </member>
+        <member name="M:QkRest.QkResponse`1.#ctor(System.Exception)">
+            <summary>
+            Constructor. Accepts API exception in case when request failed to process.
+            </summary>
+            <param name="exception">Exception that occured during request processing.</param>
+        </member>
+    </members>
+</doc>

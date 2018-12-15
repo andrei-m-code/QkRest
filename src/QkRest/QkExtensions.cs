@@ -62,7 +62,7 @@ namespace QkRest
                 if (!suppressUseSwagger)
                 {
                     app.UseSwagger();
-                    app.UseSwaggerUi();
+                    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", QkOptions.swaggerInfo.Title));
                 }
 
                 qkRestUsed = true;

@@ -1,16 +1,15 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.DependencyInjection;
+using QkRest.Authorization;
+using QkRest.Contracts;
+using QkRest.Swagger;
+using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.PlatformAbstractions;
-using Swashbuckle.Swagger.Model;
-using Swashbuckle.SwaggerGen.Application;
-using QkRest.Authorization;
-using QkRest.Contracts;
-using QkRest.Swagger;
 
 namespace QkRest
 {
@@ -27,10 +26,10 @@ namespace QkRest
         internal bool disableSwagger;
         internal bool swaggerConfigured;
         internal List<Action<SwaggerGenOptions>> swaggerSetup = new List<Action<SwaggerGenOptions>>();
-        private Info swaggerInfo = new Info
+        static internal Info swaggerInfo = new Info
         {
             Version = "v1",
-            Title = PlatformServices.Default.Application.ApplicationName
+            Title = AppDomain.CurrentDomain.FriendlyName
         };
 
         internal QkOptions(IServiceCollection services)
@@ -100,7 +99,6 @@ namespace QkRest
         /// <param name="info"></param>
         public void ConfigureSwagger(Info info)
         {
-            swaggerSetup.Add(options => options.SingleApiVersion(info));
             swaggerInfo = info;
             swaggerConfigured = true;
         }
@@ -115,7 +113,6 @@ namespace QkRest
             swaggerInfo.Contact = contact;
             swaggerInfo.License = license;
             swaggerInfo.TermsOfService = terms;
-            swaggerSetup.Add(options => options.SingleApiVersion(swaggerInfo));
             swaggerConfigured = true;
         }
 
@@ -132,26 +129,25 @@ namespace QkRest
             services.ConfigureSwaggerGen(options => options.OperationFilter<QkAuthorizationOperationFilter>());
         }
 
-        private void DefaultSwaggerConfiguration(SwaggerGenOptions opts)
+        private void DefaultSwaggerConfiguration(SwaggerGenOptions options)
         {
             //options.OperationFilter<SwaggerApiKeyFilter>();
-            opts.SingleApiVersion(swaggerInfo);
-
+            options.SwaggerDoc("v1", swaggerInfo);
             Directory
-                .GetFiles(PlatformServices.Default.Application.ApplicationBasePath)
+                .GetFiles(AppDomain.CurrentDomain.BaseDirectory)
                 .Where(file => file.EndsWith(".xml"))
                 .ToList()
                 .ForEach(path =>
                 {
                     try
                     {
-                        opts.IncludeXmlComments(path);
+                        options.IncludeXmlComments(path);
                     }
                     catch
                     {
                         // ignored
                     }
                 });
-        }        
+        }
     }
 }
