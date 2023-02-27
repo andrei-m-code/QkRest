@@ -1,3 +1,5 @@
+⚠️ The library is not supported anymore. I recommend using [Halifax.Api](https://github.com/andrei-m-code/halifax) instead.
+
 # QkRest Overview / When to use
 Micro-library for quick REST API development on ASP.NET Core. It provides exception handling, simple custom authorization features, basic REST API models and Swagger support. It works the best for new projects as you would get standardized API models right from the start, you would use QkRest exceptions in your code and you wouldn't have to redefine default exception handling logic.
 
